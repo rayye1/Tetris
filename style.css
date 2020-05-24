@@ -1,0 +1,74 @@
+.container {
+  display: flex;
+}
+
+body {
+  font-family: 'Press Start 2P';
+  position: fixed;
+  overflow-y: scroll;
+}
+
+.title {
+  font-size: 50px;
+  margin-top: 10px;
+  margin-left: 470px;
+  margin-bottom: 10px;
+}
+
+.button {
+  background-color: black;
+  color: white;
+  padding: 16px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: 'Press Start 2P';
+  margin: 4px 2px;
+  margin-left: 515px;
+}
+
+.button:hover {
+  background-color: white;
+  color: black;
+}
+
+h3 {
+  margin-left: 545px;
+  margin-top: 10px;
+}
+
+.grid {
+  width:201px;
+  height:401px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: white;
+  margin-left: 520px;
+  margin-top: 20px;
+}
+.grid div {
+  height: 20px;
+  width: 20px;
+}
+
+.tetromino {
+  background-color: blue;
+  outline: 1px solid black;
+}
+
+.mini-grid {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: white;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.mini-grid div{
+  height: 20px;
+  width: 20px;
+}
