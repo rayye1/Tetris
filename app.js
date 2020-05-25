@@ -6,8 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const width = 10
   let nextRandom = 0
   let timerId
-  let score = 0;
-  const colors = ['green', 'red', 'purple', 'orange', 'blue']
+  let score = 0
+  var game_over = false
+  var game_speed = 750
+  const colors = ['green', 'red', 'purple', 'orange', '#42ECE1', 'yellow']
 
   //The Terominoes
   const lTetromino = [
@@ -40,10 +42,16 @@ document.addEventListener('DOMContentLoaded', () => {
     [1, width+1, width*2+1, width*3+1],
     [width, width+1, width+2, width+3]
   ]
+  const b_zTetromino = [
+    [width, width+1, width*2+1, width*2+2],
+    [width, width*2, width+1, 1],
+    [width, width+1, width*2+1, width*2+2],
+    [width, width*2, width+1, 1]
+  ]
 
 
 
-  const theTetrominoes = [lTetromino, zTetromino, tTetromino, oTetromino, iTetromino]
+  const theTetrominoes = [lTetromino, zTetromino, tTetromino, oTetromino, iTetromino, b_zTetromino]
 
   let currentPosition = 4
   let currentRotation = 0
@@ -74,18 +82,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //keycode listeners
   function control(e) {
-    if (timerId) {
-      if (e.keyCode == 37) {
-        moveLeft()
-      }
-      else if (e.keyCode == 38) {
-        rotate()
-      }
-      else if (e.keyCode == 39) {
-        moveRight()
-      }
-      else if (e.keyCode == 40) {
-        moveDown()
+    if (!game_over) {
+      if (timerId) {
+        if (e.keyCode == 37) {
+          moveLeft()
+        }
+        else if (e.keyCode == 38) {
+          rotate()
+        }
+        else if (e.keyCode == 39) {
+          moveRight()
+        }
+        else if (e.keyCode == 40) {
+          moveDown()
+        }
       }
     }
   }
@@ -100,8 +110,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       else {
         draw()
-        timerId = setInterval(moveDown, 1000)
-        nextRandom = Math.floor(Math.random() * theTetrominoes.length)
+        timerId = setInterval(moveDown, game_speed)
+        //nextRandom = Math.floor(Math.random() * theTetrominoes.length)
         displayShape()
       }
     }
@@ -173,7 +183,8 @@ document.addEventListener('DOMContentLoaded', () => {
       [displayWidth+1, displayWidth+2, displayWidth*2, displayWidth*2+1],
       [1, displayWidth, displayWidth+1, displayWidth+2],
       [0, 1, displayWidth, displayWidth+1],
-      [1, displayWidth+1, displayWidth*2+1, displayWidth*3+1]
+      [1, displayWidth+1, displayWidth*2+1, displayWidth*3+1],
+      [displayWidth, displayWidth+1, displayWidth*2+1, displayWidth*2+2]
     ]
 
     function displayShape() {
@@ -195,8 +206,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       else {
         draw()
-        timerId = setInterval(moveDown, 1000)
-        nextRandom = Math.floor(Math.random() * theTetrominoes.length)
+        timerId = setInterval(moveDown, game_speed)
+        //nextRandom = Math.floor(Math.random() * theTetrominoes.length)
         displayShape()
       }
     })
@@ -222,7 +233,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function gameOver() {
       if (current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
-        scoreDisplay.innerHTML = 'end'
+        scoreDisplay.innerHTML = 'GAME OVER'
+        //alert('GAME OVER')
+        game_over = true;
+        //document.location.reload();
         clearInterval(timerId)
       }
     }
