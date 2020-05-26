@@ -1,15 +1,12 @@
 # Tetris
-The basic outline of the code is thanks to https://github.com/kubowania by watching her tutorial on youtube
+The basic outline of the code is thanks to https://github.com/kubowania by watching her tutorial on youtube 
 
-Some changes that I plan on adding/have added to this project in order to make it my own
+Changes that I've made to that code:
 
--Formatting the display so it looks more retro. This includes modifying the button to switch colors with hover and
-changing the fonts. (done)
+-Design change such as font, color, location of different components
 
--Used the letter P to pause/start the game (done)
+-Adding functionality to the P key in order to pause/start the game
 
 -Add backwards L and backwards Z to the game 
 
--Add a restart button 
-
--Fix odd rotation bug when tetromino is on the edges
+-Fixed bug where shapes would still rotate on the screen after game is over
