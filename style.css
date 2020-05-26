@@ -44,9 +44,11 @@ h3 {
   height:401px;
   display: flex;
   flex-wrap: wrap;
-  background-color: white;
+  background-color: black;
   margin-left: 520px;
   margin-top: 20px;
+  border-style: solid;
+  border-color: #42ECE1;
 }
 .grid div {
   height: 20px;
@@ -63,9 +65,11 @@ h3 {
   height: 80px;
   display: flex;
   flex-wrap: wrap;
-  background-color: white;
+  background-color: black;
   margin-left: 20px;
   margin-top: 20px;
+  border-style: solid;
+  border-color: #42ECE1;
 }
 
 .mini-grid div{
