@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let score = 0
   var game_over = false
   var game_speed = 750
-  const colors = ['green', 'red', 'purple', 'orange', '#42ECE1', 'yellow']
+  const colors = ['#0341AE', '#4EEC2E', '#A232F7 ', '#FFD500', '#42ECE1', '#FF3213', '#FF971C']
 
   //The Terominoes
   const lTetromino = [
@@ -49,9 +49,16 @@ document.addEventListener('DOMContentLoaded', () => {
     [width, width*2, width+1, 1]
   ]
 
+  const b_lTetromino = [
+    [0, 1, width+1, width*2+1],
+    [width+2, width*2, width*2+1, width*2+2],
+    [0, width, width*2, width*2+1],
+    [width, width*2, width+1, width+2]
+  ]
 
 
-  const theTetrominoes = [lTetromino, zTetromino, tTetromino, oTetromino, iTetromino, b_zTetromino]
+
+  const theTetrominoes = [lTetromino, zTetromino, tTetromino, oTetromino, iTetromino, b_zTetromino, b_lTetromino]
 
   let currentPosition = 4
   let currentRotation = 0
@@ -103,16 +110,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //pause game with key p
   function p_key(e) {
-    if (e.keyCode == 80) {
-      if (timerId) {
-        clearInterval(timerId)
-        timerId = null
-      }
-      else {
-        draw()
-        timerId = setInterval(moveDown, game_speed)
-        //nextRandom = Math.floor(Math.random() * theTetrominoes.length)
-        displayShape()
+    if (!game_over) {
+      if (e.keyCode == 80) {
+        if (timerId) {
+          clearInterval(timerId)
+          timerId = null
+        }
+        else {
+          draw()
+          timerId = setInterval(moveDown, game_speed)
+          //nextRandom = Math.floor(Math.random() * theTetrominoes.length)
+          displayShape()
+        }
       }
     }
   }
@@ -184,7 +193,8 @@ document.addEventListener('DOMContentLoaded', () => {
       [1, displayWidth, displayWidth+1, displayWidth+2],
       [0, 1, displayWidth, displayWidth+1],
       [1, displayWidth+1, displayWidth*2+1, displayWidth*3+1],
-      [displayWidth, displayWidth+1, displayWidth*2+1, displayWidth*2+2]
+      [displayWidth, displayWidth+1, displayWidth*2+1, displayWidth*2+2],
+      [0, 1, displayWidth+1, displayWidth*2+1]
     ]
 
     function displayShape() {
@@ -200,15 +210,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //start/pause button
     startBtn.addEventListener('click', () => {
-      if (timerId) {
-        clearInterval(timerId)
-        timerId = null
+      if (!game_over) {
+        if (timerId) {
+          clearInterval(timerId)
+          timerId = null
+        }
+        else {
+          draw()
+          timerId = setInterval(moveDown, game_speed)
+          //nextRandom = Math.floor(Math.random() * theTetrominoes.length)
+          displayShape()
+        }
       }
       else {
-        draw()
-        timerId = setInterval(moveDown, game_speed)
-        //nextRandom = Math.floor(Math.random() * theTetrominoes.length)
-        displayShape()
+        document.location.reload() //allows refresh for game
       }
     })
 
