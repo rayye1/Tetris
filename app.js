@@ -74,6 +74,9 @@ document.addEventListener('DOMContentLoaded', () => {
       squares[currentPosition + index].classList.add('tetromino')
       squares[currentPosition + index].style.backgroundColor = colors[random]
     })
+    console.log("currentPosition: " + currentPosition)
+    console.log("currentRotation: " + currentRotation)
+    console.log("Random " + random)
   }
 
   //undraw the tetromino
@@ -178,6 +181,9 @@ document.addEventListener('DOMContentLoaded', () => {
         currentRotation = 0
       }
       current = theTetrominoes[random][currentRotation]
+      if ((random == 0 || random == 6) && (currentRotation == 1 || currentRotation == 3) && currentPosition % 10 == 8) {
+        currentPosition -= 1;
+      }
       draw()
     }
 
