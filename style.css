@@ -76,3 +76,10 @@ h3 {
   height: 20px;
   width: 20px;
 }
+
+.instructions {
+  width: 500px;
+  color: white;
+  margin-top: 20px;
+  font-size: 12px;
+}
